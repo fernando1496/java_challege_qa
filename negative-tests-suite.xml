@@ -1,0 +1,12 @@
+<suite name="NegativeTestsSuite">
+    <test name="Negative Tests">
+        <groups>
+            <run>
+                <include name="negative" />
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.ContactUsTest" />
+        </classes>
+    </test>
+</suite>
