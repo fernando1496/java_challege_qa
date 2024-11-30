@@ -8,11 +8,12 @@ import pages.HomePage;
 import utils.BaseTest;
 
 public class HomePageTest extends BaseTest {
-    private HomePage homePage;
-    private ContactUsPage contactUsPage;
+    private HomePage homePage; // Page object for the Home Page
+    private ContactUsPage contactUsPage; // Page object for the Contact Us Page
 
     @BeforeMethod(alwaysRun = true)
     public void setUpTest() {
+        // Initialize WebDriver and page objects before each test
         setUp();
         homePage = new HomePage(driver);
         contactUsPage = new ContactUsPage(driver);
@@ -20,22 +21,25 @@ public class HomePageTest extends BaseTest {
 
     @Test(groups = {"positive"})
     public void testHomePageAndContactUsFormDisplay() {
-        // Navigate to the home page
+        // Step 1: Navigate to the home page
         homePage.openHomePage("https://www.qubika.com");
-        assert driver.getCurrentUrl().equals("https://qubika.com/");
-        assert homePage.isLogoDisplayed(); // Validate the logo is displayed
 
-        // Click the Contact Us button
+        // Step 2: Validate the current URL and that the home page logo is displayed
+        assert driver.getCurrentUrl().equals("https://qubika.com/");
+        assert homePage.isLogoDisplayed();
+
+        // Step 3: Click the "Contact Us" button
         homePage.clickContactUs();
 
-        // Validate that the contact form elements are displayed
-        assert contactUsPage.isNameFieldDisplayed();
-        assert contactUsPage.isEmailFieldDisplayed();
-        assert contactUsPage.isGetInTouchButtonDisplayed();
+        // Step 4: Validate that the "Contact Us" form is displayed correctly
+        assert contactUsPage.isNameFieldDisplayed(); // Verify the "First Name" field is displayed
+        assert contactUsPage.isEmailFieldDisplayed(); // Verify the "Last Name" field is displayed
+        assert contactUsPage.isGetInTouchButtonDisplayed(); // Verify the "Get in Touch" button is displayed
     }
 
     @AfterMethod(alwaysRun = true)
     public void tearDownTest() {
+        // Clean up WebDriver after each test
         tearDown();
     }
 }
